@@ -250,6 +250,35 @@
       height: 100%;
     }
 
+    .skip-load {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    .skip {
+      position: fixed;
+      background-color: #060cbe;
+      color: white;
+      box-shadow: 0 0 10px #060cbe, 0 0 20px #060cbe, 0 0 30px black;
+      top: 520px;
+      border: none;
+      height: 50px;
+      width: 150px;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .skip:hover,
+    .skip:active {
+      box-shadow: 0 0 10px #060cbe, 0 0 20px #060cbe, 0 0 30px #060cbe,
+        0 0 40px black;
+    }
+
     #loading2 {
       display: none;
       position: fixed;
@@ -435,6 +464,9 @@
       <div class="loader">
         <div class="lds-dual-ring"></div>
       </div>
+      <div class="skip-load">
+        <button class="skip" onclick="skip_loading()">Skip</button>
+      </div>
     </div>
     <div id="loading2">
       <div class="loading2-icon-div">
@@ -521,9 +553,9 @@
           setTimeout(() => {
             document.getElementById("loading-text").innerText =
               "SVPN Loading...";
-          }, 500);
-        }, 500);
-      }, 1500);
+          }, 200);
+        }, 200);
+      }, 900);
 
       document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
@@ -588,8 +620,19 @@
           }
         });
 
+      function skip_loading() {
+        document.getElementById("loading").style.transition =
+          "opacity 1s linear";
+        document.getElementById("loading").style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("loading").style.transition =
+            "opacity 0s linear";
+        }, 1000);
+      }
+
       function enter() {
-        fetch("data/registered_names.json")
+        fetch("registered_names.json")
           .then((response) => response.json())
           .then((data) => {
             if (
