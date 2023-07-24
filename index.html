@@ -176,7 +176,7 @@
     }
 
     #loading {
-      display: none;
+      display: block;
       position: fixed;
       top: 0;
       left: 0;
@@ -525,11 +525,11 @@
         }, 500);
       }, 1500);
 
-      // document.addEventListener("DOMContentLoaded", function () {
-      //   setTimeout(() => {
-      //     document.getElementById("loading").style.display = "none";
-      //   }, 2000);
-      // });
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          document.getElementById("loading").style.display = "none";
+        }, 2000);
+      });
 
       readCookies();
 
