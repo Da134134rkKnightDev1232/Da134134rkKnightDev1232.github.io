@@ -465,7 +465,12 @@
         <div class="lds-dual-ring"></div>
       </div>
       <div class="skip-load">
-        <button class="skip" onclick="skip_loading()">Skip</button>
+        <button
+          class="skip"
+          onclick="document.getElementById('loading').style.display = 'none'"
+        >
+          Skip
+        </button>
       </div>
     </div>
     <div id="loading2">
@@ -619,17 +624,6 @@
             document.getElementById("submit").click();
           }
         });
-
-      function skip_loading() {
-        document.getElementById("loading").style.transition =
-          "opacity 1s linear";
-        document.getElementById("loading").style.opacity = 0;
-        setTimeout(() => {
-          document.getElementById("loading").style.display = "none";
-          document.getElementById("loading").style.transition =
-            "opacity 0s linear";
-        }, 1000);
-      }
 
       function enter() {
         fetch("registered_names.json")
